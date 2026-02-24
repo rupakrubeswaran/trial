@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makkalil Oruvan Foundation Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+/* Body and page setup */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Background image visible from the start */
+body::before {
+    content: "";
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: url('https://img.sanishtech.com/u/db30609f66c9815c1cee9ef2f28c0166.png') no-repeat center center/cover;
+    z-index: 0;
+    filter: brightness(0.6);
+}
+
+/* Preloader overlay */
+#preloader {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    flex-direction: column;
+    background: rgba(239, 219, 219, 0);
+    pointer-events: none;
+}
+
+/* Logo and text animation */
+#logo, #foundationText {
+    animation: fadeInOut 3s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+#foundationText {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+#loginPage {
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.form-wrapper {
+    position: relative;
+    width: 350px;
+    background: rgba(203, 180, 180, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(248, 247, 247, 0.3);
+    color: #fff;
+    text-align: center;
+    z-index: 1;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.tab.active {
+    border-color: #f39c12;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    background: rgba(221, 6, 6, 0.2);
+    color: #000000;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.google-btn img{
+    width:18px;
+}
+
+.footer-text{
+    margin-top:20px;
+    font-size:12px;
+    color:#f5f3f3;
+}
+
+.signin-btn { 
+    background-color: #2dc940; 
+    color: #000000; 
+}
+
+.form { display: none; flex-direction: column; }
+.form.active { display: flex; }
+
+p span { 
+    cursor: pointer; 
+    text-decoration: underline; 
+    font-weight: bold; 
+    color: #f1c40f; 
+}
+</style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+    <img src="https://img.sanishtech.com/u/f62463a39e42fb91e0934301dc7ac322.png" alt="Foundation Logo" id="logo">
+    <div id="foundationText">Makkalil Oruvan Foundation</div>
+</div>
+
+<!-- Login Page -->
+<div id="loginPage">
+    <div class="form-wrapper">
+
+        <div class="tabs">
+            <div class="tab active" id="tabSignIn">Sign In</div>
+        </div>
+
+        <form class="form active" id="signInForm">
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit" class="signin-btn">Sign In</button>
+        </form>
+
+        <div class="divider">OR</div>
+
+        <button class="google-btn">
+            <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png" alt="Google Logo">
+            Continue with Google
+        </button>
+
+    </div>
+</div>
+
+<script>
+// Fade in login page
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        document.getElementById("loginPage").style.opacity = 1;
+        document.getElementById("preloader").style.display = "none";
+    }, 2800);
+});
+
+// Redirect when Sign In is submitted
+document.getElementById("signInForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    window.location.href = "home.html";
+});
+
+// Redirect when Google button is clicked
+document.querySelector(".google-btn").addEventListener("click", function() {
+    window.location.href = "home.html";
+});
+</script>
+
+</body>
+</html>

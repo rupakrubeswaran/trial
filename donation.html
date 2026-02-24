@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makkalil Oruvan Foundation - Donation</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+/* Reset & body */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: url('https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* Overlay for readability */
+body::before {
+    content: "";
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.6);
+    z-index: 0;
+}
+
+/* Container */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 100px auto;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* Heading */
+.container h1 {
+    text-align: center;
+    color: #f39c12;
+    margin-bottom: 30px;
+}
+
+/* Donation Amounts */
+.amounts {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.amounts button {
+    flex: 1;
+    min-width: 100px;
+    padding: 12px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    background: #f39c12;
+    color: #fff;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.amounts button.selected, .amounts button:hover {
+    background: #e74c3c;
+}
+
+/* Custom Amount */
+.custom-amount {
+    margin: 15px 0;
+}
+.custom-amount input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+/* Form Fields */
+input[type=text], input[type=email], input[type=tel] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+}
+
+/* Payment Methods */
+.payment-methods {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.payment-methods label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+.payment-methods input {
+    cursor: pointer;
+}
+
+/* Submit Button */
+button.submit-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    background: #e74c3c;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button.submit-btn:hover { opacity: 0.9; }
+
+/* Responsive */
+@media (max-width: 600px) {
+    .amounts { flex-direction: column; }
+    .payment-methods { flex-direction: column; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Donate to Makkalil Oruvan Foundation</h1>
+
+    <div class="amounts">
+        <button class="amount-btn">₹500</button>
+        <button class="amount-btn">₹1000</button>
+        <button class="amount-btn">₹2000</button>
+        <button class="amount-btn">₹5000</button>
+    </div>
+
+    <div class="custom-amount">
+        <input type="text" id="customAmount" placeholder="Or enter custom amount">
+    </div>
+
+    <div class="donor-info">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="tel" placeholder="Phone Number" required>
+    </div>
+
+    <div class="payment-methods">
+        <label><input type="radio" name="payment" value="upi" checked> UPI</label>
+        <label><input type="radio" name="payment" value="card"> Credit/Debit Card</label>
+        <label><input type="radio" name="payment" value="netbanking"> Net Banking</label>
+    </div>
+
+    <button class="submit-btn">Donate Now</button>
+</div>
+
+<script>
+// Amount selection
+const amountButtons = document.querySelectorAll('.amount-btn');
+const customAmount = document.getElementById('customAmount');
+
+amountButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        amountButtons.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        customAmount.value = '';
+    });
+});
+
+customAmount.addEventListener('input', () => {
+    amountButtons.forEach(b => b.classList.remove('selected'));
+});
+</script>
+
+</body>
+</html>

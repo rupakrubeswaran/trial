@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makkalil Oruvan Foundation</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    background: #f9f9f9;
+}
+
+/* Navbar */
+nav {
+    position: fixed;
+    top:0; left:0; right:0;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 100;
+    display:flex;
+    justify-content: center;
+}
+nav ul {
+    list-style: none;
+    display:flex;
+    margin:0; padding:10px 20px;
+    gap: 40px;
+}
+nav ul li { font-weight:600; }
+nav ul li a { text-decoration:none; color:#333; transition:0.3s; }
+nav ul li a:hover { color:#f39c12; }
+
+section {
+    padding: 100px 20px 80px 20px;
+    text-align: center;
+}
+
+/* Welcome */
+#welcome {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    position: relative;
+    transition: background-image 1s ease-in-out;
+}
+#welcome::before {
+    content:"";
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0, 0, 0, 0.372);
+}
+#welcome .content { position: relative; z-index: 1; }
+#welcome h1 { font-size: 48px; margin-bottom: 20px; }
+#welcome p { font-size: 24px; font-style: italic; }
+
+/* Intro */
+#intro { max-width: 900px; margin: 0 auto; color: #333; }
+#intro h2 { margin-bottom: 20px; color: #f39c12; }
+#intro p { font-size: 18px; line-height: 1.6; }
+
+/* Team */
+#team h2 { color:#f39c12; margin-bottom:40px;}
+.team-slider { overflow:hidden; width:100%; }
+.team-track {
+    display:flex;
+    gap:20px;
+    width:max-content;
+    animation: scrollLeft 30s linear infinite;
+}
+.team-member {
+    flex:0 0 220px;
+    background:#fff;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    padding:20px;
+}
+.team-member img {
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+}
+@keyframes scrollLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* Wings */
+#wings h2 { color:#f39c12; margin-bottom:30px; }
+.wings-container { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
+
+.wing {
+    flex:0 0 270px;
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.wing img:first-child {
+    width:80px;
+    height:80px;
+}
+
+.wing h4{
+    margin-top:10px;
+    color:#f39c12;
+}
+
+.incharge-photo{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-top:15px;
+    border:4px solid #f39c12;
+}
+
+.incharge-name{
+    margin-top:12px;
+    font-weight:600;
+    font-size:16px;
+}
+
+.incharge-role{
+    font-size:14px;
+    color:gray;
+}
+
+/* Events */
+#events h2 { color:#f39c12; margin-bottom:40px; }
+.events-slider { display:flex; overflow-x:auto; gap:20px; }
+.event-card {
+    flex:0 0 300px;
+    background:#fff;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    overflow:hidden;
+}
+.event-card img { width:100%; height:200px; object-fit:cover; }
+.event-card .info { padding:15px; }
+.event-card button {
+    margin-top:10px;
+    padding:8px 15px;
+    border:none;
+    border-radius:10px;
+    background:#f39c12;
+    color:#fff;
+    cursor:pointer;
+}
+
+/* NALAM */
+#nalam {
+    background:#f39c12;
+    color:#fff;
+    padding:60px 20px;
+    border-radius:20px;
+    margin:40px 0;
+}
+#nalam img { width:300px; border-radius:10px; margin-bottom:20px; }
+#nalam button{
+    padding:10px 25px;
+    border:none;
+    border-radius:10px;
+    background:#fff;
+    color:#f39c12;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* Vision & Goals */
+#vision h2, #goals h2 { color:#f39c12; }
+#goals ul { max-width:600px; margin:0 auto; text-align:left; }
+
+/* Social */
+#social { margin-top:40px; text-align:center; }
+.social-container {
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    margin-top:30px;
+}
+.social-link {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    font-size:20px;
+    font-weight:600;
+    color:#333;
+    transition:0.3s;
+}
+.social-link img { width:35px; height:35px; }
+.social-link:hover { color:#f39c12; transform: scale(1.08); }
+
+/* Achievements */
+#achievements {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:30px;
+    margin-top:40px;
+}
+.achievement {
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    width:200px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+.achievement h3 { color:#f39c12; }
+
+</style>
+</head>
+<body>
+
+<nav>
+<ul>
+<li><a href="#welcome">Home</a></li>
+<li><a href="#intro">About Us</a></li>
+<li><a href="volunteer.html">volunteer Registration</a></li>
+<li><a href="donation.html">Donation</a></li>
+<li><a href="">Contact</a></li>
+</ul>
+</nav>
+
+<section id="welcome">
+<div class="content">
+<h1>Welcome to Makkalil Oruvan Foundation</h1>
+<p>"Together we build, together we rise..."</p>
+</div>
+</section>
+
+<section id="intro">
+<h2>About Our Foundation</h2>
+<p>Makkalil Oruvan Foundation was started by a group of school and college friends with a shared passion for serving the underprivileged and creating a positive impact in society. Through compassion, integrity, and respect, we strive to uplift communities by providing basic necessities, supporting education, and fostering a brighter, more hopeful future for all.</p>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+<h2>Meet Our Team</h2>
+<div class="team-slider">
+<div class="team-track">
+
+<div class="team-member"><img src="https://img.sanishtech.com/u/a384b8e8a6e62d56e6576658e22c988c.jpg"><h4>Mr.Rubeswaran A</h4><span>Founder & CEO</span></div>
+<div class="team-member"><img src="https://img.sanishtech.com/u/f3cbffc5654f529785534f81c1e12050.jpg"><h4>Ms.PRIYADARSHINI ANBU</h4><span>Director</span></div>
+<div class="team-member"><img src="https://img.sanishtech.com/u/4e7c55de63a652507b184a7011bc13ab.png"><h4>Mr.JOBEL CREFLO</h4><span>Secretary</span></div>
+<div class="team-member"><img src="janu.jpg"><h4>Mr.JANUSH.D</h4><span>Treasurer</span></div>
+<div class="team-member"><img src="https://img.sanishtech.com/u/3e7389e6e4a187f086e37913a6121e65.png"><h4>Mr.THINESHWAR.D</h4><span>Manager</span></div>
+<div class="team-member"><img src="https://img.sanishtech.com/u/e34723cda7e6f8d3f8bc7ffe8c68a4f2.jpg"><h4>Mr.SAI DEEPAAK.J</h4><span>Guiding Officer</span></div>
+<div class="team-member"><img src="https://img.sanishtech.com/u/a63142742e7bc0aeb206d16682e8e08b.jpg"><h4>Mr.JITESH.J</h4><span>Fundraising Officer</span></div>
+<div class="team-member"><img src="https://img.sanishtech.com/u/169b2df967babb939312acd1a5d10c2e.png"><h4>Mr.VIMAL.RV</h4><span>Project Director</span></div>
+<div class="team-member"><img src="https://img.sanishtech.com/u/5f83fd075fba7047e9517a29e7ad31cb.png"><h4>Mr.MANISH.M</h4><span>Spokes Person</span></div>
+
+</div>
+</div>
+</section>
+
+<!-- WINGS -->
+<section id="wings">
+<h2>Our Wings</h2>
+<div class="wings-container">
+
+<div class="wing">
+<img src="https://img.icons8.com/color/96/000000/school-building.png"/>
+<h4>Education & Awareness</h4>
+<img class="incharge-photo" src="https://img.sanishtech.com/u/66a7023f2d43c8e122430460f2cca6cb.png">
+<div class="incharge-name">Mr.Suryakant.k</div>
+<div class="incharge-role">Wing Incharge</div>
+</div>
+
+<div class="wing">
+<img src="https://img.icons8.com/color/96/000000/medical-doctor.png"/>
+<h4>Medical & Health</h4>
+<img class="incharge-photo" src="https://img.sanishtech.com/u/976495bcf5a1a45bee628488f6781bcb.jpg">
+<div class="incharge-name">Mr.Surhendhaar</div>
+<div class="incharge-role">Wing Incharge</div>
+</div>
+
+<div class="wing">
+<img src="https://img.sanishtech.com/u/e1ce2348c4b5b88236674cded580160d.png"/>
+<h4>women's Empowerment</h4>
+<img class="incharge-photo" src="https://img.sanishtech.com/u/022ea8d30fc76feb03b49b0ee700aedb.jpg">
+<div class="incharge-name">Ms.Kavitha</div>
+<div class="incharge-role">Wing Incharge</div>
+</div>
+
+<div class="wing">
+<img src="https://img.sanishtech.com/u/d7b6fa1a8af9d8e6489efd289c6df72f.png"/>
+<h4>Skill Development</h4>
+<img class="incharge-photo" src="https://img.sanishtech.com/u/5108c007e238c3bf4501eb571bc19cf9.jpg">
+<div class="incharge-name">Mr.Manish Kumar</div>
+<div class="incharge-role">Wing Incharge</div>
+</div>
+
+</div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+<h2>Our Events</h2>
+<div class="events-slider">
+<div class="event-card">
+    <img src="https://img.sanishtech.com/u/6e763ea4f3213560ab593f53b505e146.jpeg">
+    
+    <div class="info">
+        <h4>Dinner For Orphanage</h4>
+        <h4>Event No:1</h4>
+        
+        <button onclick="location.href='event1.html'">
+            View Details
+        </button>
+    </div>
+</div>
+<div class="event-card">
+    <img src="https://img.sanishtech.com/u/94746fce411d800f0b0517e7de6961f4.jpeg">
+    
+    <div class="info">
+        <h4>Food For Homeless Peoples</h4>
+        <h4>Event No:2</h4>
+        
+        <a href="event2.html">
+            <button>View Details</button>
+        </a>
+    </div>
+</div>
+<div class="event-card">
+    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=400&q=80">
+    <div class="info">
+        <h4>Fizz cultural event collabed with rotract club</h4>
+        <h4>Event No:3</h4>
+        <a href="event3.html">
+            <button>View Details</button>
+        </a>
+    </div>
+</div>
+<div class="event-card">
+    <img src="https://img.sanishtech.com/u/b2d569bf80d49d7b89e4292eaec8098f.jpeg">
+    <div class="info">
+        <h4>Essential Things Distribution</h4>
+        <h4>Event No:4</h4>
+        <a href="event4.html">
+            <button>View Details</button>
+        </a>
+    </div>
+</div>
+<div class="event-card">
+    <img src="https://img.sanishtech.com/u/8d8638227c014e935cff2d7f47b25202.jpeg">
+    <div class="info">
+        <h4>Pre New Year Celebration In Orphanage</h4>
+        <h4>Event No:5</h4>
+        <a href="event5.html">
+            <button>View Details</button>
+        </a>
+    </div>
+</div>
+<div class="event-card">
+    <img src="https://img.sanishtech.com/u/a306e92e60ca29b9c327fcf1f9acd5b9.jpeg">
+    
+    <div class="info">
+        <h4>Food Drive</h4>
+        <h4>Event No:6</h4>
+        
+        <a href="event6.html">
+            <button>View Details</button>
+        </a>
+    </div>
+</div>
+<div class="event-card">
+    <img src="https://img.sanishtech.com/u/6a449a257f361d89b14ed72dc5ad783b.jpeg">
+    
+    <div class="info">
+        <h4>Labout's Day</h4>
+        <h4>Event No:7</h4>
+        
+        <a href="event7.html">
+            <button>View Details</button>
+        </a>
+    </div>
+</div>
+<div class="event-card">
+    <img src="https://img.sanishtech.com/u/2828f353fdf9634e8ab555677d984e05.jpeg">
+    
+    <div class="info">
+        <h4>Breakfast For Old Age Home</h4>
+        <h4>Event No:9</h4>
+        <a href="event9.html">
+            <button>View Details</button>
+        </a>
+    </div>
+</div>
+</section>
+
+<!-- NALAM -->
+<section id="nalam">
+<h2>NALAM Event</h2>
+<img src="https://img.sanishtech.com/u/75a24b8a94101b6bbef32b071f110e1c.png">
+<p>The NALAM event focuses on holistic wellness and community engagement.</p>
+<button>View Details</button>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+<h2>Our Vision</h2>
+<p>To empower underprivileged communities and create sustainable impact.</p>
+</section>
+
+<!-- GOALS -->
+<section id="goals">
+<h2>Our Goals</h2>
+<ul>
+<li>Support orphanages and homeless people.</li>
+<li>Conduct social welfare events.</li>
+<li>Promote community empowerment.</li>
+</ul>
+</section>
+
+<!-- SOCIAL -->
+<section id="social">
+<h2>Follow Us</h2>
+<div class="social-container">
+<a href="https://www.instagram.com/makkaliloruvan_foundation?igsh=MWlldThiZGw2bGtjag==" target="_blank" class="social-link">
+<img src="https://cdn-icons-png.flaticon.com/512/174/174855.png">
+<span>Instagram</span>
+</a>
+<a href="https://www.linkedin.com/in/makkalil-oruvan-foundation-1bb672337" target="_blank" class="social-link">
+<img src="https://cdn-icons-png.flaticon.com/512/174/174857.png">
+<span>LinkedIn</span>
+</a>
+</div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+<div class="achievement"><h3>People Served</h3><span>1500+</span></div>
+<div class="achievement"><h3>Impact Projects</h3><span>25+</span></div>
+<div class="achievement"><h3>Events Done</h3><span>20+</span></div>
+<div class="achievement"><h3>Volunteers</h3><span>50+</span></div>
+<div class="achievement"><h3>People Helped</h3><span>2000+</span></div>
+</section>
+<script>
+const images = [
+"https://img.sanishtech.com/u/bd36a588d15b0eba323cab334ab855b9.jpg",
+"https://img.sanishtech.com/u/0c142d482937b3fe6990be12ce0a08b7.jpeg",
+"https://img.sanishtech.com/u/efecd5bcb564538a5d1e9e7b2dd9adec.jpg",
+"https://img.sanishtech.com/u/20603fd103f45620b67cbf5a9a47f235.jpg",
+"https://img.sanishtech.com/u/be1d248a2feadfd129232e73aecb2a50.jpg"
+];
+
+let current = 0;
+const welcomeSection = document.getElementById("welcome");
+
+function changeBackground() {
+    welcomeSection.style.backgroundImage = `url('${images[current]}')`;
+    current = (current + 1) % images.length;
+}
+
+changeBackground();
+setInterval(changeBackground, 4000);
+</script>
+</body>
+</html>

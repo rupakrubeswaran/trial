@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Details - Makkalil Oruvan Foundation</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:#f4f4f4;
+}
+
+header{
+    background:#f39c12;
+    color:white;
+    padding:40px 20px;
+    text-align:center;
+}
+
+.container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom:40px;
+}
+
+h2{
+    color:#f39c12;
+    margin-bottom:20px;
+}
+
+/* Info Grid */
+.info-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+/* SLIDESHOW */
+.slideshow-container{
+    position:relative;
+    max-width:100%;
+    height:400px;
+    overflow:hidden;
+    border-radius:15px;
+}
+
+.slide{
+    display:none;
+    width:100%;
+    height:100%;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* Arrows */
+.prev, .next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0.5);
+    color:white;
+    padding:10px 15px;
+    cursor:pointer;
+    border-radius:50%;
+    font-size:20px;
+}
+
+.prev{ left:15px; }
+.next{ right:15px; }
+
+.prev:hover, .next:hover{
+    background:#f39c12;
+}
+
+/* Accounts */
+.accounts{
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+    justify-content:center;
+}
+
+.account-box{
+    background:#fff8e6;
+    padding:20px;
+    border-radius:15px;
+    width:250px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.account-box h3{
+    color:#f39c12;
+}
+
+/* Rating */
+.rating{
+    text-align:center;
+}
+
+.stars{
+    font-size:35px;
+    cursor:pointer;
+}
+
+.stars span{
+    color:gray;
+    transition:0.3s;
+}
+
+.stars span.active{
+    color:#f39c12;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#222;
+    color:white;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Event Details</h1>
+<p>Makkalil Oruvan Foundation</p>
+</header>
+
+<div class="container">
+
+<!-- EVENT INFO -->
+<div class="card">
+<h2>Event Information</h2>
+<div class="info-grid">
+<div><strong>Event Title:</strong><br> NALAM 1.0 – Diwali Celebration</div>
+<div><strong>Event Number:</strong><br> 6th Event</div>
+<div><strong>Event Venue:</strong><br> St. Francis Orphanage, Kanchipuram</div>
+<div><strong>Event Date:</strong><br> 28/12/2024</div>
+</div>
+</div>
+
+<!-- ✅ SLIDESHOW BELOW EVENT INFO -->
+<div class="card">
+<h2>Event Photos</h2>
+
+<div class="slideshow-container">
+    
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497">
+    </div>
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e">
+    </div>
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca">
+    </div>
+
+    <div class="prev" onclick="changeSlide(-1)">❮</div>
+    <div class="next" onclick="changeSlide(1)">❯</div>
+
+</div>
+</div>
+
+<!-- WHAT WE PROVIDED -->
+<div class="card">
+<h2>What We Provided</h2>
+<ul>
+<li>New Dresses (2 sets per child)</li>
+<li>Rice (26 kg)</li>
+<li>Bedsheets (10)</li>
+<li>Essential Grocery Items</li>
+<li>Festive Celebration Activities</li>
+</ul>
+</div>
+
+<!-- SUMMARY -->
+<div class="card">
+<h2>Event Summary</h2>
+<p>
+The NALAM 1.0 event was successfully organized to spread joy and festive happiness among underprivileged children.
+Our team ensured that every child received essential items and celebrated with dignity and smiles.
+The event strengthened community bonds and reinforced our mission of compassion and service.
+</p>
+</div>
+
+<!-- ACCOUNTS -->
+<div class="card">
+<h2>Accounts Details</h2>
+<div class="accounts">
+<div class="account-box">
+<h3>Total Fund Received</h3>
+<p>₹8,520</p>
+</div>
+
+<div class="account-box">
+<h3>Total Expense</h3>
+<p>₹8,209</p>
+</div>
+
+<div class="account-box">
+<h3>Remaining Balance</h3>
+<p>₹311</p>
+</div>
+</div>
+</div>
+
+<!-- RATING -->
+<div class="card rating">
+<h2>Rate This Event</h2>
+<div class="stars" id="stars">
+<span data-value="1">&#9733;</span>
+<span data-value="2">&#9733;</span>
+<span data-value="3">&#9733;</span>
+<span data-value="4">&#9733;</span>
+<span data-value="5">&#9733;</span>
+</div>
+<p id="ratingMessage"></p>
+</div>
+
+</div>
+
+<footer>
+© 2026 Makkalil Oruvan Foundation | Together We Rise
+</footer>
+
+<script>
+let slideIndex = 0;
+const slides = document.getElementsByClassName("slide");
+
+function showSlides() {
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1; }
+    slides[slideIndex - 1].style.display = "block";
+}
+
+function changeSlide(n){
+    slideIndex += n - 1;
+    if (slideIndex >= slides.length) slideIndex = 0;
+    if (slideIndex < 0) slideIndex = slides.length - 1;
+    showSlides();
+}
+
+showSlides();
+setInterval(showSlides, 3000);
+
+/* Rating */
+const stars = document.querySelectorAll("#stars span");
+const ratingMessage = document.getElementById("ratingMessage");
+
+stars.forEach(star => {
+    star.addEventListener("click", function(){
+        const value = this.getAttribute("data-value");
+        stars.forEach(s => s.classList.remove("active"));
+        for(let i=0; i<value; i++){
+            stars[i].classList.add("active");
+        }
+        ratingMessage.innerText = "Thank you for rating us " + value + " star(s)!";
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volunteer Registration Certificate</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:20px;
+}
+
+/* Certificate Container */
+.certificate{
+    max-width:900px;
+    margin:30px auto;
+    background:#fff;
+    padding:40px;
+    border:8px solid #f39c12;
+    border-radius:20px;
+    position:relative;
+}
+
+/* Header */
+.header{
+    text-align:center;
+}
+
+.logo{
+    width:100px;
+}
+
+.foundation-name{
+    font-size:28px;
+    font-weight:700;
+    color:#f39c12;
+}
+
+.foundation-address{
+    font-size:14px;
+    color:#555;
+}
+
+.quote{
+    font-style:italic;
+    margin-top:10px;
+    color:#333;
+}
+
+/* Title */
+.title{
+    text-align:center;
+    margin:30px 0;
+    font-size:26px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+/* Photo */
+.photo{
+    display:block;
+    margin:20px auto;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #f39c12;
+}
+
+/* Details */
+.details{
+    margin-top:20px;
+    font-size:16px;
+    line-height:1.8;
+}
+
+.details span{
+    font-weight:600;
+}
+
+/* Footer */
+.footer {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+}
+
+/* Seal centered */
+.seal {
+    margin: 0 auto; /* centers this div in flex container */
+}
+
+.seal img {
+    width: 120px;
+}
+
+/* Signature at right */
+.signature {
+    margin-left: auto; /* pushes it to the right */
+}
+
+.signature img {
+    width: 150px;
+}
+
+.contact{
+    margin-top:30px;
+    text-align:center;
+    font-size:14px;
+    color:#555;
+}
+
+.download-btn{
+    display:block;
+    margin:30px auto;
+    padding:15px 30px;
+    border:none;
+    border-radius:20px;
+    background:#f39c12;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="certificate" id="certificate">
+
+    <!-- Header -->
+    <div class="header">
+        <img src="https://img.sanishtech.com/u/f62463a39e42fb91e0934301dc7ac322.png" class="logo">
+        <div class="foundation-name">Makkalil Oruvan Foundation</div>
+        <div class="foundation-address">
+            No.6 Jothi Nagar, 9th Street, West Tambaram, Tamil Nadu - 600045
+        </div>
+        <div class="quote">"Together we build, together we rise..."</div>
+    </div>
+
+    <!-- Title -->
+    <div class="title">Volunteer Registration Certificate</div>
+
+    <!-- Photo -->
+    <img id="photoPreview" class="photo" src="">
+
+    <!-- Details -->
+    <div class="details">
+        <div><span>MOF ID:</span> <span id="mofId"></span></div>
+        <div><span>Name:</span> <span id="volName"></span></div>
+        <div><span>Contact:</span> <span id="volContact"></span></div>
+        <div><span>Address:</span> <span id="volAddress"></span></div>
+        <div><span>Date of Birth:</span> <span id="volDOB"></span></div>
+        <div><span>Referred By:</span> <span id="volSource"></span></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="signature">
+            <img src="https://img.sanishtech.com/u/93be33ef68103e90bf582f700dec4bc9.png">
+            <div>Founder Signature</div>
+        </div>
+
+        <div class="seal">
+            <img src="https://img.sanishtech.com/u/4cb9ec46cc642c1b00e2d19f5ab40dfa.jpeg">
+            <div>Foundation Seal</div>
+        </div>
+    </div>
+
+    <!-- Contact Details -->
+    <div class="contact">
+        📞 +91 63825 60775 <br>
+        📧 makkaliloruvanfoundation@gmail.com <br>
+        Instagram: @makkaliloruvanfoundation <br>
+        LinkedIn: Makkalil Oruvan Foundation
+    </div>
+
+</div>
+
+<button class="download-btn" onclick="downloadPDF()">Download Certificate PDF</button>
+
+<script>
+// Get data from URL
+function getParam(param){
+    const params = new URLSearchParams(window.location.search);
+    return params.get(param);
+}
+
+// MOF ID from URL (already generated in previous page)
+document.getElementById("mofId").innerText = getParam("mofId") || "24000";
+document.getElementById("volName").innerText = getParam("name") || "N/A";
+document.getElementById("volContact").innerText = getParam("contact") || "N/A";
+document.getElementById("volAddress").innerText = getParam("address") || "N/A";
+document.getElementById("volDOB").innerText = getParam("dob") || "N/A";
+document.getElementById("volSource").innerText = getParam("source") || "N/A";
+
+// Show real uploaded photo (base64 from previous page)
+const photo = getParam("photo");
+if(photo){
+    document.getElementById("photoPreview").src = photo;
+}else{
+    document.getElementById("photoPreview").src = "https://via.placeholder.com/150";
+}
+
+// Download PDF
+function downloadPDF(){
+    const element = document.getElementById("certificate");
+    const opt = {
+        margin: 0.5,
+        filename: 'MOF_Certificate_'+getParam("mofId")+'.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+}
+</script>
+
+</body>
+</html>
